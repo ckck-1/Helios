@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:helios/screens/bodyWeight.dart';
-
+import 'package:helios/screens/calories.dart';
 
 class MetricsScreen extends StatelessWidget {
   const MetricsScreen({super.key});
@@ -30,7 +30,7 @@ class MetricsScreen extends StatelessWidget {
           childAspectRatio: 0.85,
           physics: const BouncingScrollPhysics(),
           children: [
-            // 🔥 BODY WEIGHT (CLICKABLE)
+            // 🔥 BODY WEIGHT CARD
             InkWell(
               borderRadius: BorderRadius.circular(16),
               onTap: () {
@@ -46,11 +46,23 @@ class MetricsScreen extends StatelessWidget {
               ),
             ),
 
-            _metricCard(
-              imagePath: "assets/images/bodyWeight.png",
-              title: "Calories Burned",
-              description: "Based on distance and weight",
+            // 🍊 CALORIES BURNED CARD
+            InkWell(
+              borderRadius: BorderRadius.circular(16),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => const CaloriesScreen()),
+                );
+              },
+              child: _metricCard(
+                imagePath: "assets/images/bodyWeight.png",
+                title: "Calories Burned",
+                description: "Based on distance and weight",
+              ),
             ),
+
+            // OTHER METRIC CARDS
             _metricCard(
               imagePath: "assets/images/goals.png",
               title: "Goals",
@@ -79,10 +91,14 @@ class MetricsScreen extends StatelessWidget {
   }) {
     return Container(
       decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [gradientOrange, gradientBlack, gradientBlack],
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
+        gradient: RadialGradient(
+          colors: [
+            gradientOrange.withOpacity(0.8), // start orange
+            gradientBlack, // fade to black
+          ],
+          stops: [0.0, 0.3], // orange ends around 30%
+          center: Alignment.topCenter, // start from top center
+          radius: 2, // smooth spread
         ),
         borderRadius: BorderRadius.circular(16),
       ),
