@@ -332,7 +332,7 @@ class _CircularCaloriesPainter extends CustomPainter {
   _CircularCaloriesPainter({
     required this.progress,
     required this.color,
-    this.strokeWidth = 6,
+    this.strokeWidth = 5,
     this.gradient = false,
   });
 
@@ -352,7 +352,7 @@ class _CircularCaloriesPainter extends CustomPainter {
       ..strokeWidth = strokeWidth
       ..strokeCap = StrokeCap.round;
 
-    if (gradient) {
+    if (gradient)  {
       foreground.shader = SweepGradient(
         startAngle: -pi / 2,
         endAngle: 3 * pi / 2,
